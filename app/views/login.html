@@ -1,0 +1,17 @@
+<div class="jumbotron">
+  <h2>Welcome to auth with promises.</h2>
+  <form>
+      <div class="form-group">
+        <label class="pull-left">Email</label>
+        <input type="email" ng-model="email" class="form-control" placeholder="Email">
+      </div>
+      <div class="form-group">
+        <label class="pull-left">Password</label>
+        <input type="password" ng-model="password" class="form-control" placeholder="Password">
+      </div>
+      <button type="submit" class="btn btn-info btn-block" ng-click="login(email, password)">Login</button>
+  </form>
+</div>
+
+<button ng-click="logout()" class="btn btn-xs btn-danger">Logout</button>
+<button ng-click="isAuth()" class="btn btn-xs btn-warning">Is logged in?</button>
