@@ -31,6 +31,8 @@ To get this running locally do the following:
 
 ###### *Figure 2 - Add a user*
 
+- - -
+
 ### Putting Promises to work
 > Promises are great as a callback replacement/alternative. Not only to they promise (IMO) a cleaner interface they also allow you to ensure certain async tasks perform in a synchronous manner.
 
@@ -42,10 +44,11 @@ The two places in the application where I use promises are in my *authentication
 Located in `auth-service` I create methods that are already configured with the promise API plus a programmatic implementation in `saveLocal()`. Where this becomes really power is in it's implementation when these methods are **chained**. Please feel free to look at the code in detail in `login.js`, but here is the snippet.
 
 ```js
-      // Init Promise Chain
-      authService.postData(user, pw)
-        .then(authService.saveLocal)
-        .then(authService.redirect);
+
+// Init Promise Chain in login.js
+authService.postData(user, pw)
+    .then(authService.saveLocal)
+    .then(authService.redirect);
 ```
 
 This allows me to perform some really neat, really powerful method chaining. I'm able to only save user-related data to localstore once authentication is successful and then only redirect the user once all the data is saved locally.
@@ -58,14 +61,16 @@ This is where we get some really slick functionality out of the box with Angular
 
 
 ```js
-    var auth = {
-        check: ['authService', function(authService) {
-          return authService.isLoggedin();
-        }]
-    };
+// app.js
+var auth = {
+    check: ['authService', function(authService) {
+      return authService.isLoggedin();
+    }]
+};
 ```
 
 ```js
+// app.js
 .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
@@ -74,22 +79,23 @@ This is where we get some really slick functionality out of the box with Angular
 ```
 
 ```js
-    this.isLoggedin =  function isLoggedin() {
+// auth-service.js
+this.isLoggedin =  function isLoggedin() {
 
-      var dfd = $q.defer(),
-        requestedPath = $location.url();
+  var dfd = $q.defer(),
+    requestedPath = $location.url();
 
-      if (userService.name) {
-        dfd.resolve(requestedPath);
-      } else {
-        dfd.reject();
-        originalRequest.set(requestedPath);
-        $location.path('/login');
-      }
+  if (userService.name) {
+    dfd.resolve(requestedPath);
+  } else {
+    dfd.reject();
+    originalRequest.set(requestedPath);
+    $location.path('/login');
+  }
 
-      return dfd.promise;
+  return dfd.promise;
 
-    };
+};
 ```
 
 ### Extra Goodies
