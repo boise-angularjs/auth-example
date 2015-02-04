@@ -1,4 +1,4 @@
-# Authentication Example [![Build Status](https://travis-ci.org/talentpair/grunt-referee.svg?branch=master)](https://travis-ci.org/talentpair/grunt-referee)
+# Authentication Example [![Build Status](https://travis-ci.org/boise-angularjs/auth-example.svg?branch=master)](https://travis-ci.org/boise-angularjs/auth-example)
 
 ### Overview
 This is an example of how you can use the promise api in AngularJS in both your authentication process and routing. This example uses the following:
