@@ -6,3 +6,6 @@ before_script:
   - 'bower install'
   - 'grunt build'
   - 'grunt test'
+cache:
+  directories:
+    - node_modules
