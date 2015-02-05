@@ -104,5 +104,5 @@ The other thing I would like to point out is the use of `karma-coverage` which u
 Disclaimer, I wasn't able to get everything in here to 100% code coverage with the amount of time I had to prepare this project. For anyone who is new to the tool please feel free to clone and play around and perhaps even submit a PR!
 
 ### Conclusion
-Hopefully through this guide and by stepping through this code you are able to have a nice playground for both interaction with authentication as well as promises.
+Hopefully through this guide and by stepping through this code you are able to have a nice playground for both interaction with authentication with promises.
 If there are any questions or comments please hit me up on the twitters at [@scott_sword](https://twitter.com/scott_sword). Cheers.
