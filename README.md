@@ -1,7 +1,7 @@
 # Authentication Example [![Build Status](https://travis-ci.org/boise-angularjs/auth-example.svg?branch=master)](https://travis-ci.org/boise-angularjs/auth-example)
 
 ### Overview
-This is an example of how you can use the promise api in AngularJS in both your authentication process and routing. This example uses the following:
+This is an example of how you can use the AngularJS promise api in both your authentication process and routing. This example uses the following:
 
 * Firebase + AngularFire
 * Angular-Local-Storage [see project](https://github.com/grevory/angular-local-storage)
@@ -34,14 +34,14 @@ To get this running locally do the following:
 - - -
 
 ### Putting Promises to work
-> Promises are great as a callback replacement/alternative. Not only to they promise (IMO) a cleaner interface they also allow you to ensure certain async tasks perform in a synchronous manner.
+> Promises are great as a callback replacement/alternative. Not only do they provide (IMO) a cleaner interface they also allow you to ensure certain async tasks perform in a synchronous manner.
 
 *For more on promises see the [official documentation](https://docs.angularjs.org/api/ng/service/$q).*
 
 The two places in the application where I use promises are in my *authentication pipeline* and in my *routing*.
 
 ##### Auth Pipeline
-Located in `auth-service` I create methods that are already configured with the promise API plus a programmatic implementation in `saveLocal()`. Where this becomes really power is in it's implementation when these methods are **chained**. Please feel free to look at the code in detail in `login.js`, but here is the snippet.
+Located in `auth-service` I create methods that are already configured with the promise API plus a programmatic implementation in `saveLocal()`. Where this becomes really power is when these methods are **chained**. Please feel free to look at the code in detail in `login.js`, but here is the snippet.
 
 ```js
 
@@ -54,7 +54,7 @@ authService.postData(user, pw)
 This allows me to perform some really neat, really powerful method chaining. I'm able to only save user-related data to localstore once authentication is successful and then only redirect the user once all the data is saved locally.
 
 ##### Route Control
-Sometimes we want to restrict routes to users. For instance, we don't want un-authenticated users accessing any routes within the app until the authenticate themselves. We could check our `userService` or `localStorage` to see if that user in authenticated in the controller, but that would be redundant. Plus, we would allow that controller code to run–albeit brief. This is where Angular `$routeProvider` comes into play. `$routeProvider` takes a config key called "resolve" which is built to interface with promises.
+Sometimes we want to restrict routes to users. For instance, we don't want un-authenticated users accessing any routes within the app until they authenticate themselves. We could check our `userService` or `localStorage` to see if that user in authenticated in the controller, but that would be redundant. Plus, we would allow that controller code to run–albeit brief. This is where Angular `$routeProvider` comes into play. `$routeProvider` takes a config key called "resolve" which is built to interact with promises.
 
 ###### *Intercepting*
 This is where we get some really slick functionality out of the box with Angular. In `app.js` you can see the `auth` object which returns a method on my `authService`. This approach allows me to tap into a service from within my config block. This particular method performs a promise to ensure that the user is authenticated before allowing access to the template and controller. If the user isn't authenticated then that user is bounced to the login view.
